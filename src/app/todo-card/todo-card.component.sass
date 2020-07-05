@@ -1,0 +1,58 @@
+.todo-card
+    cursor: pointer
+    margin-bottom: 1em
+    outline: none !important
+
+    &:hover
+        background-color: #f3f3f3   
+
+    &__content
+        margin-bottom: 1em
+
+    &__header
+        display: flex
+        justify-content: space-between
+        align-items: baseline
+        margin-bottom: 1em
+
+        &__headline
+            display: flex
+            align-items: center
+
+            &__priority
+                position: relative
+                margin-right: .5em
+                width: 8px
+                height: 8px
+                border-radius: 50%
+                background-color: var(--priority-color)
+
+                &--high
+                    position: absolute
+                    left: -1px
+                    top: -1px
+                    border-radius: 50%
+                    border: 1px solid var(--priority-color)
+                    width: inherit
+                    height: inherit
+                    animation-name: pulsing
+                    animation-duration: 1.5s
+                    animation-iteration-count: infinite
+                    animation-timing-function: linear
+
+                @keyframes pulsing
+                    0%
+                        opacity: 0
+                        transform: scale(1)
+                    25%
+                        opacity: .75
+                    100%
+                        opacity: 0
+                        transform: scale(1.75)
+
+            h1, h2, h3, h4, h5, h6
+                margin: unset
+
+    &__footer
+        font-style: italic
+        padding-top: 1em

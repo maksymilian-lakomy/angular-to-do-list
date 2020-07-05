@@ -1,0 +1,26 @@
+<mat-card class="todo-card" matRipple (mouseover)="mouseOver(true)" (mouseout)="mouseOver(false)" (click)="editTodo()"
+    cdkDrag [cdkDragData]="todo" [cdkDragStartDelay]="15" tabindex="-1">
+    <div class="todo-card__header">
+        <div class="todo-card__header__headline">
+            <div class="todo-card__header__headline__priority" [style.--priority-color]="getPriorityColor()">
+                <div class="todo-card__header__headline__priority--high" *ngIf="todo.priority == 'high'"></div>
+            </div>
+            <h2>{{todo.name}}</h2>
+        </div>
+        <div [style.visibility]="active ? 'visible' : 'hidden'">
+            <button mat-icon-button (click)="deleteTodo()">
+                <mat-icon aria-label="Example home icon">delete</mat-icon>
+            </button>
+        </div>
+    </div>
+    <section class="todo-card__content">
+        {{todo.description}}
+    </section>
+
+    <mat-divider></mat-divider>
+    <div class="todo-card__footer">
+        <div *ngIf="statusCustomDescription; then customDescription else regularDescription"></div>
+        <ng-template #customDescription>{{statusCustomDescription}}.</ng-template>
+        <ng-template #regularDescription>{{todo.remainingTime}}.</ng-template>
+    </div>
+</mat-card>

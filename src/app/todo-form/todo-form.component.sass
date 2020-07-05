@@ -1,0 +1,31 @@
+.full-width
+    width: 100%
+
+.fill-space
+    display: flex
+    justify-items: stretch
+
+    &__element
+        flex-grow: 1
+
+.todo-form
+
+    &__label
+        color: rgba(0,0,0,.54)
+
+    &__changes
+        display: flex
+        align-items: center
+        &__restore-button
+            margin-left: auto
+    
+    &__priority
+
+        .mat-button-toggle-checked
+            color: white
+            font-weight: 500
+            background-color: var(--priority-color)
+            transition-duration: .2s
+
+    textarea
+        line-height: 1.5em

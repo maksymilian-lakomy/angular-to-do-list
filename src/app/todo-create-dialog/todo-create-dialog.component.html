@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>{{language.newCardDialog}}</h1>
+
+<mat-dialog-content>
+    <todo-form [todoData]="todoData" (newTodo)="createNewTodo($event)"></todo-form>
+</mat-dialog-content>

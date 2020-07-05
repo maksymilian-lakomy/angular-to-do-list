@@ -1,0 +1,52 @@
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="todo-form">
+    <div *ngIf="todoFormChanges && rememberChanges" class="todo-form__changes">
+        <div>{{language.unsavedChanges}}</div>
+        <button mat-stroked-button (click)="restore($event)" class="todo-form__changes__restore-button" color="warn">
+            {{language.restore}}
+        </button>   
+    </div>
+
+    <p>
+        <mat-form-field appearance="standard" class="full-width">
+            <mat-label>{{language.nameInput}}</mat-label>
+            <input type="text" formControlName="name" name="name" matInput [placeholder]="language.nameInputPlaceholder">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-label class="todo-form__label">{{language.statusInput}}</mat-label>
+        <mat-button-toggle-group name="status" formControlName="status" aria-label="Stasus"
+            class="full-width fill-space">
+            <mat-button-toggle class="fill-space__element" *ngFor="let status of statuses" [value]="status.key">
+                {{status.value}}
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </p>
+    <p>
+        <mat-form-field appearance="legacy" class="full-width">
+            <mat-label>{{language.descriptionInput}}</mat-label>
+            <textarea matInput matTextareaAutosize matAutosizeMinRows="5" formControlName="description"
+                [placeholder]="language.descriptionInputPlaceholder"></textarea>
+        </mat-form-field>
+    </p>
+    <p class="todo-form__priority">
+        <mat-label class="todo-form__label">{{language.priorityInput}}</mat-label>
+        <mat-button-toggle-group name="priority" formControlName="priority" aria-label="Priority"
+            class="full-width fill-space">
+            <mat-button-toggle class="fill-space__element" *ngFor="let priority of priorities" [value]="priority.key"
+                [style.--priority-color]="priority.color">
+                {{priority.value}}
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </p>
+    <p>
+        <mat-form-field class="full-width">
+            <mat-label>{{language.deadlineInput}}</mat-label>
+            <input type="text" formControlName="deadline" matInput [matDatepicker]="deadline">
+            <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+            <mat-datepicker #deadline></mat-datepicker>
+        </mat-form-field>
+    </p>
+    <button type="submit" mat-stroked-button [disabled]="!todoForm.valid">
+        {{language.submitInput}}
+    </button>
+</form>

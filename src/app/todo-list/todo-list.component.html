@@ -1,0 +1,14 @@
+<div class="filters-section" *ngIf="todos.length > 0">
+    <h4>
+        {{language.sortingHeadline}}
+    </h4>
+    <div class = "filters-section__list">
+        <mat-checkbox class="filters-section__list__filter" *ngFor="let filter of sortFilters"
+            [(ngModel)]="filter.active" (change)="refreshPipe()"> {{language[filter.filter]}} </mat-checkbox>
+    </div>
+</div>
+<mat-list role="list" cdkDropList class="list" [id]="id" [cdkDropListConnectedTo]="connectedListsIds"
+    [cdkDropListData]="todos" (cdkDropListDropped)="drop($event)">
+    <todo-card *ngFor="let todo of (todos | sortTodos: sortFilters)" [todo]="todo"
+        [statusCustomDescription]="status.customDescription"></todo-card>
+</mat-list>
